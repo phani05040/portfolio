@@ -1,0 +1,8691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Phani | Portfolio</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        ChatGPT said:
+Yes — the overall direction is good, but the screenshot currently feels too compressed and unfinished. The biggest problems are:
+
+Sidebar is too narrow.
+Profile area is tiny.
+Navigation text is difficult to read.
+Hero text is partially hidden on the left.
+Hero content sits too low.
+Background is too bright in places, making text compete with the image.
+There isn't enough visual hierarchy.
+The sidebar needs a stronger active state.
+The hero needs a more premium overlay and typography.
+I would keep the left-sidebar portfolio concept, but make it look much closer to a professional developer portfolio.
+
+Replace your current CSS with this
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #05090d;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+:root {
+    --sidebar: #071019;
+    --sidebar-light: #0d1822;
+    --accent: #00b8e6;
+    --accent-dark: #008fb5;
+    --white: #ffffff;
+    --muted: #8895a0;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 245px;
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071019 0%,
+            #08131d 55%,
+            #050b11 100%
+        );
+
+    border-right: 1px solid rgba(255,255,255,0.06);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 45px 20px;
+
+    z-index: 9999;
+
+    overflow-y: auto;
+}
+
+
+/* subtle glow */
+
+.sidebar::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    background: rgba(0,184,230,0.06);
+
+    filter: blur(70px);
+
+    top: -50px;
+    left: -50px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.profile {
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 25px;
+}
+
+.profile-image {
+    width: 92px;
+    height: 92px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid rgba(255,255,255,0.18);
+
+    padding: 4px;
+
+    background: #101c26;
+
+    transition: 0.4s ease;
+
+    box-shadow:
+        0 0 0 6px rgba(0,184,230,0.04),
+        0 10px 35px rgba(0,0,0,0.35);
+}
+
+.profile-image:hover {
+    transform: scale(1.06);
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 25px rgba(0,184,230,0.25);
+}
+
+.profile-name {
+    margin-top: 13px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+
+    color: #ffffff;
+}
+
+.profile-role {
+    margin-top: 5px;
+
+    color: #6f7d87;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   SOCIAL ICONS
+========================================= */
+
+.social-icons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 38px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.social-icons a {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    color: #8b98a1;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: white;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0,184,230,0.25);
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.side-nav {
+    width: 100%;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.side-nav ul {
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.side-nav li {
+    width: 100%;
+}
+
+.side-nav a {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    padding: 13px 18px;
+
+    border-radius: 8px;
+
+    color: #7f8b94;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.2px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.side-nav a i {
+    width: 25px;
+
+    font-size: 11px;
+
+    color: #687680;
+
+    transition: 0.3s ease;
+}
+
+
+/* hover */
+
+.side-nav a:hover {
+    color: white;
+
+    background: rgba(255,255,255,0.04);
+
+    transform: translateX(3px);
+}
+
+.side-nav a:hover i {
+    color: var(--accent);
+}
+
+
+/* active */
+
+.side-nav a.active {
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,184,230,0.15),
+            rgba(0,184,230,0.035)
+        );
+
+    box-shadow:
+        inset 3px 0 0 var(--accent);
+}
+
+.side-nav a.active i {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main {
+    margin-left: 245px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        80px
+        9%;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(3,8,12,0.86) 0%,
+            rgba(3,8,12,0.65) 30%,
+            rgba(3,8,12,0.20) 65%,
+            rgba(3,8,12,0.35) 100%
+        ),
+        url("YOUR_BACKGROUND_IMAGE.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    overflow: hidden;
+}
+
+
+/* bottom darkness */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 35%;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,0.7)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 760px;
+
+    animation: heroReveal 1s ease forwards;
+}
+
+.hero-small {
+    color: var(--accent);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+.hero-title {
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: 1.02;
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+}
+
+.hero-title span {
+    color: var(--accent);
+
+    position: relative;
+}
+
+
+/* underline */
+
+.hero-title span::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 60%;
+
+    height: 3px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            transparent
+        );
+}
+
+.hero-description {
+    max-width: 620px;
+
+    color: rgba(255,255,255,0.72);
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   HERO BUTTONS
+========================================= */
+
+.hero-buttons {
+    display: flex;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 24px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.hero-btn.primary {
+    color: #001017;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 10px 30px rgba(0,184,230,0.20);
+}
+
+.hero-btn.primary:hover {
+    background: white;
+
+    transform: translateY(-3px);
+}
+
+.hero-btn.secondary {
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: rgba(255,255,255,0.04);
+
+    backdrop-filter: blur(10px);
+}
+
+.hero-btn.secondary:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.scroll-indicator {
+    position: absolute;
+
+    right: 45px;
+
+    bottom: 40px;
+
+    z-index: 4;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: rgba(255,255,255,0.45);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+}
+
+.scroll-line {
+    width: 1px;
+
+    height: 60px;
+
+    background:
+        linear-gradient(
+            var(--accent),
+            transparent
+        );
+
+    animation: scrollLine 2s infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes heroReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes scrollLine {
+
+    0% {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+
+    51% {
+        transform-origin: bottom;
+    }
+
+    100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main {
+        margin-left: 200px;
+    }
+
+    .hero {
+        padding: 60px;
+    }
+
+    .hero-title {
+        font-size: 55px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 75px;
+
+        padding:
+            25px
+            8px;
+    }
+
+    .main {
+        margin-left: 75px;
+    }
+
+    .profile-image {
+        width: 48px;
+        height: 48px;
+    }
+
+    .profile-name,
+    .profile-role {
+        display: none;
+    }
+
+    .social-icons {
+        flex-direction: column;
+
+        margin-bottom: 25px;
+    }
+
+    .social-icons a {
+        width: 28px;
+        height: 28px;
+    }
+
+    .side-nav a {
+        justify-content: center;
+
+        padding: 13px 5px;
+    }
+
+    .side-nav a span {
+        display: none;
+    }
+
+    .side-nav a i {
+        width: auto;
+
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 50px 35px;
+    }
+
+    .hero-title {
+        font-size: 43px;
+
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .main {
+        margin-left: 60px;
+    }
+
+    .hero {
+        padding: 40px 25px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .hero-small {
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+}
+
+
+
+<!----------Education Section------------->
+
+/* =========================================
+   EDUCATION SECTION
+========================================= */
+
+.education-section {
+    position: relative;
+
+    padding: 120px 9%;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 184, 230, 0.07),
+            transparent 30%
+        ),
+        #060d13;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    max-width: 700px;
+
+    margin-bottom: 80px;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #00b8e6;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-size: clamp(40px, 5vw, 64px);
+
+    line-height: 1.1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading h2 span {
+    color: #00b8e6;
+}
+
+.section-heading p {
+    color: #7f8b94;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    max-width: 600px;
+}
+
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.education-timeline {
+    position: relative;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* vertical line */
+
+.education-timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 27px;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #00b8e6,
+            rgba(0,184,230,0.1),
+            transparent
+        );
+}
+
+
+/* =========================================
+   EDUCATION ITEM
+========================================= */
+
+.education-item {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 55px 1fr;
+
+    gap: 30px;
+
+    margin-bottom: 55px;
+}
+
+
+/* =========================================
+   TIMELINE DOT
+========================================= */
+
+.timeline-dot {
+    position: relative;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #09151e;
+
+    border: 1px solid rgba(0,184,230,0.35);
+
+    color: #00b8e6;
+
+    font-size: 17px;
+
+    z-index: 2;
+
+    box-shadow:
+        0 0 0 7px #060d13,
+        0 0 25px rgba(0,184,230,0.08);
+}
+
+
+/* current education */
+
+.education-item.current .timeline-dot {
+    background: #00b8e6;
+
+    color: #041017;
+
+    border-color: #00b8e6;
+
+    box-shadow:
+        0 0 0 7px #060d13,
+        0 0 35px rgba(0,184,230,0.35);
+}
+
+
+/* =========================================
+   EDUCATION CARD
+========================================= */
+
+.education-card {
+    position: relative;
+
+    padding: 35px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
+        );
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.4s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0,184,230,0.3);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.25),
+        0 0 30px rgba(0,184,230,0.05);
+}
+
+
+/* =========================================
+   YEAR
+========================================= */
+
+.education-year {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #00b8e6;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   CURRENT BADGE
+========================================= */
+
+.current-badge {
+    display: inline-block;
+
+    margin-left: 10px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: rgba(0,184,230,0.1);
+
+    border: 1px solid rgba(0,184,230,0.2);
+
+    color: #00b8e6;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.education-location {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #687680;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+}
+
+.education-location i {
+    color: #00b8e6;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.education-description {
+    color: #849099;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    max-width: 750px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.education-details {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.detail {
+    min-width: 150px;
+
+    padding: 14px 16px;
+
+    border-radius: 8px;
+
+    background: rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.detail span {
+    display: block;
+
+    color: #66747d;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+.detail strong {
+    color: #dce2e5;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   LEARNING
+========================================= */
+
+.learning {
+    margin-top: 20px;
+}
+
+.learning h5 {
+    margin-bottom: 12px;
+
+    color: #d6dde1;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   TECH TAGS
+========================================= */
+
+.tech-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.tech-tags span {
+    padding: 7px 12px;
+
+    border-radius: 5px;
+
+    background: rgba(0,184,230,0.06);
+
+    border: 1px solid rgba(0,184,230,0.12);
+
+    color: #7fc8d9;
+
+    font-size: 10px;
+
+    transition: 0.3s ease;
+}
+
+.tech-tags span:hover {
+    background: rgba(0,184,230,0.15);
+
+    border-color: rgba(0,184,230,0.3);
+
+    color: #00c8f0;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .education-section {
+        padding: 80px 25px;
+    }
+
+    .section-heading {
+        margin-bottom: 55px;
+    }
+
+    .education-timeline::before {
+        left: 20px;
+    }
+
+    .education-item {
+        grid-template-columns: 40px 1fr;
+
+        gap: 15px;
+    }
+
+    .timeline-dot {
+        width: 40px;
+        height: 40px;
+
+        font-size: 13px;
+
+        box-shadow:
+            0 0 0 5px #060d13;
+    }
+
+    .education-card {
+        padding: 25px 20px;
+    }
+
+    .education-card h3 {
+        font-size: 19px;
+    }
+
+    .education-card h4 {
+        font-size: 12px;
+    }
+
+    .education-description {
+        font-size: 12px;
+    }
+
+    .education-details {
+        flex-direction: column;
+    }
+
+    .detail {
+        width: 100%;
+    }
+
+    .current-badge {
+        display: block;
+
+        width: fit-content;
+
+        margin: 5px 0 15px;
+    }
+
+}
+/* =========================================
+   EDUCATION HEADING
+========================================= */
+
+.section-heading {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto 80px;
+
+    text-align: left;
+}
+
+.section-label {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: #00b8e6;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin: 0 0 22px;
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    line-height: 1.05;
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    color: #ffffff;
+}
+
+.section-heading h2 span {
+    color: #00b8e6;
+}
+
+.section-heading p {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #7f8b94;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+
+/* =========================================
+   CERTIFICATIONS SECTION
+========================================= */
+
+.certifications-section {
+    position: relative;
+
+    padding: 120px 9%;
+
+    background:
+        radial-gradient(
+            circle at 15% 30%,
+            rgba(0, 184, 230, 0.06),
+            transparent 30%
+        ),
+        #050c12;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   CERTIFICATION GRID
+========================================= */
+
+.certifications-grid {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   CERTIFICATE CARD
+========================================= */
+
+.certificate-card {
+    position: relative;
+
+    min-height: 300px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.015)
+        );
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* glowing background */
+
+.certificate-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    top: -80px;
+
+    background: rgba(0,184,230,0.08);
+
+    border-radius: 50%;
+
+    filter: blur(30px);
+
+    transition: 0.5s ease;
+}
+
+
+/* left accent */
+
+.certificate-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 3px;
+    height: 0;
+
+    background: #00b8e6;
+
+    transition: 0.4s ease;
+}
+
+
+/* hover */
+
+.certificate-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(0,184,230,0.35);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.35),
+        0 0 30px rgba(0,184,230,0.06);
+}
+
+.certificate-card:hover::before {
+    transform: scale(1.5);
+}
+
+.certificate-card:hover::after {
+    height: 100%;
+}
+
+
+/* =========================================
+   TOP
+========================================= */
+
+.certificate-top {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* icon */
+
+.certificate-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #00b8e6;
+
+    background:
+        rgba(0,184,230,0.08);
+
+    border:
+        1px solid rgba(0,184,230,0.15);
+
+    font-size: 18px;
+
+    transition: 0.4s ease;
+}
+
+.certificate-card:hover .certificate-icon {
+    background: #00b8e6;
+
+    color: #041017;
+
+    transform: rotate(-5deg);
+}
+
+
+/* number */
+
+.certificate-number {
+    color: #3e4c55;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.certificate-content {
+    margin-top: 35px;
+}
+
+.certificate-type {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #00b8e6;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.certificate-content h3 {
+    margin-bottom: 13px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+.certificate-content p {
+    max-width: 470px;
+
+    color: #7d8a93;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.certificate-footer {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
+}
+
+.certificate-footer div span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #53616a;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+}
+
+.certificate-footer div strong {
+    color: #b4bec3;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+.certificate-footer > i {
+    color: #5e6b73;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+.certificate-card:hover
+.certificate-footer > i {
+    color: #00b8e6;
+
+    transform:
+        translate(3px, -3px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .certifications-section {
+        padding: 90px 30px;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .certifications-section {
+        padding: 75px 20px;
+    }
+
+    .certificate-card {
+        padding: 25px;
+
+        min-height: 280px;
+    }
+
+    .certificate-content h3 {
+        font-size: 19px;
+    }
+
+}
+
+/* =========================================
+   PROJECTS SECTION
+========================================= */
+
+.projects-section {
+    position: relative;
+
+    padding: 140px 8%;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(0,184,230,0.08),
+            transparent 30%
+        ),
+        #03090e;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   PROJECT HEADING
+========================================= */
+
+.projects-heading {
+    max-width: 900px;
+
+    margin: 0 auto 90px;
+}
+
+
+/* =========================================
+   PROJECT CARD
+========================================= */
+
+.project-card {
+    max-width: 1150px;
+
+    margin: 0 auto 100px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.012)
+        );
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.35);
+
+    transition: 0.5s ease;
+}
+
+.project-card:hover {
+    border-color:
+        rgba(0,184,230,0.25);
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,0.45),
+        0 0 50px rgba(0,184,230,0.04);
+}
+
+
+/* =========================================
+   PROJECT IMAGE
+========================================= */
+
+.project-image {
+    position: relative;
+
+    width: 100%;
+
+    height: 430px;
+
+    overflow: hidden;
+
+    background: #09131b;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.7s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.04);
+}
+
+
+/* dark image overlay */
+
+.project-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 45%,
+            rgba(3,9,14,0.8)
+        );
+}
+
+
+/* project number */
+
+.project-image-overlay {
+    position: absolute;
+
+    left: 30px;
+    bottom: 25px;
+
+    z-index: 2;
+}
+
+.project-image-overlay span {
+    color: #00b8e6;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   PROJECT CONTENT
+========================================= */
+
+.project-content {
+    padding: 55px;
+}
+
+
+/* =========================================
+   PROJECT HEADER
+========================================= */
+
+.project-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+}
+
+.project-category {
+    color: #00b8e6;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.project-header h3 {
+    margin: 10px 0;
+
+    color: #ffffff;
+
+    font-size: clamp(30px, 4vw, 48px);
+
+    line-height: 1.1;
+
+    letter-spacing: -1.5px;
+}
+
+.project-tagline {
+    margin: 0;
+
+    color: #7e8b93;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.project-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 13px;
+
+    border-radius: 30px;
+
+    background: rgba(0,184,230,0.05);
+
+    border: 1px solid rgba(0,184,230,0.12);
+
+    color: #7babb8;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #00b8e6;
+
+    box-shadow:
+        0 0 10px #00b8e6;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.project-description {
+    max-width: 900px;
+
+    margin-bottom: 50px;
+}
+
+.project-description h4,
+.project-subsection > h4 {
+    margin-bottom: 18px;
+
+    color: #e5eaed;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+.project-description p {
+    color: #84919a;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   PROJECT SUBSECTION
+========================================= */
+
+.project-subsection {
+    margin-top: 50px;
+}
+
+
+/* =========================================
+   WHAT I BUILT
+========================================= */
+
+.project-points {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.project-point {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    background: rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(255,255,255,0.04);
+
+    border-radius: 9px;
+}
+
+.point-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    color: #00b8e6;
+
+    background: rgba(0,184,230,0.08);
+
+    font-size: 9px;
+}
+
+.project-point p {
+    margin: 2px 0 0;
+
+    color: #84919a;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   TECHNOLOGY GRID
+========================================= */
+
+.technology-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   TECHNOLOGY CARD
+========================================= */
+
+.technology-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 65px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    transition: 0.3s ease;
+}
+
+.technology-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(0,184,230,0.25);
+
+    background:
+        rgba(0,184,230,0.04);
+}
+
+
+/* technology icon */
+
+.technology-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    background: rgba(255,255,255,0.04);
+}
+
+
+/* technology colors */
+
+.technology-icon.java {
+    color: #f89820;
+}
+
+.technology-icon.spring {
+    color: #6db33f;
+}
+
+.technology-icon.docker {
+    color: #2496ed;
+}
+
+.technology-icon.github {
+    color: #ffffff;
+}
+
+.technology-icon.maven {
+    color: #c71a36;
+}
+
+.technology-icon.node {
+    color: #68a063;
+}
+
+.technology-icon.database {
+    color: #00b8e6;
+}
+
+.technology-icon.other {
+    color: #9c8cff;
+}
+
+
+.technology-card strong {
+    display: block;
+
+    color: #d9e0e4;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+.technology-card span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #596770;
+
+    font-size: 8px;
+}
+
+
+/* =========================================
+   CHALLENGE / LEARNING GRID
+========================================= */
+
+.project-info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 55px;
+}
+
+
+/* info box */
+
+.project-info-box {
+    padding: 25px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border: 1px solid
+        rgba(255,255,255,0.05);
+}
+
+
+/* challenge */
+
+.challenge-box {
+    border-top:
+        2px solid rgba(255,170,70,0.5);
+}
+
+
+/* learning */
+
+.learning-box {
+    border-top:
+        2px solid rgba(0,184,230,0.5);
+}
+
+
+/* heading */
+
+.info-box-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.info-box-heading h4 {
+    margin: 0;
+
+    color: #dce2e5;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* info icon */
+
+.info-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    color: #00b8e6;
+
+    background:
+        rgba(0,184,230,0.08);
+
+    font-size: 13px;
+}
+
+.challenge-box .info-icon {
+    color: #ffaa46;
+
+    background:
+        rgba(255,170,70,0.08);
+}
+
+
+/* list */
+
+.project-info-box ul {
+    margin: 0;
+
+    padding-left: 17px;
+}
+
+.project-info-box li {
+    margin-bottom: 10px;
+
+    color: #7d8a93;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CONTRIBUTIONS
+========================================= */
+
+.contribution-section {
+    padding-top: 10px;
+}
+
+.contribution-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.contribution-item {
+    padding: 18px;
+
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.contribution-item span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #00b8e6;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.contribution-item p {
+    margin: 0;
+
+    color: #78858e;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   PROJECT LINKS
+========================================= */
+
+.project-links {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 55px;
+
+    padding-top: 30px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
+}
+
+.project-btn {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.project-btn > i:last-child {
+    font-size: 8px;
+
+    margin-left: 5px;
+}
+
+
+/* github */
+
+.github-btn {
+    color: #dce2e5;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.github-btn:hover {
+    background: #ffffff;
+
+    color: #050c12;
+}
+
+
+/* live */
+
+.live-btn {
+    color: #041017;
+
+    background: #00b8e6;
+
+    border: 1px solid #00b8e6;
+}
+
+.live-btn:hover {
+    background: #00d4ff;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(0,184,230,0.2);
+}
+/* =========================================
+   PROJECT MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .projects-section {
+        padding: 100px 30px;
+    }
+
+    .project-content {
+        padding: 35px;
+    }
+
+    .technology-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .contribution-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .projects-section {
+        padding: 80px 20px;
+    }
+
+    .project-card {
+        border-radius: 15px;
+
+        margin-bottom: 60px;
+    }
+
+    .project-image {
+        height: 250px;
+    }
+
+    .project-content {
+        padding: 25px 20px;
+    }
+
+    .project-header {
+        flex-direction: column;
+
+        margin-bottom: 35px;
+    }
+
+    .project-header h3 {
+        font-size: 32px;
+    }
+
+    .project-status {
+        align-self: flex-start;
+    }
+
+    .project-points {
+        grid-template-columns: 1fr;
+    }
+
+    .technology-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .project-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contribution-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-links {
+        flex-direction: column;
+    }
+
+    .project-btn {
+        justify-content: center;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .technology-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================
+   TECHNOLOGIES SECTION
+========================================= */
+
+.technologies-section {
+
+    position: relative;
+
+    padding: 140px 8%;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0,184,230,0.07),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 70%,
+            rgba(0,184,230,0.04),
+            transparent 30%
+        ),
+        #03090e;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.technologies-heading {
+
+    max-width: 850px;
+
+    margin: 0 auto 100px;
+
+}
+
+
+.section-label {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #00b8e6;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+}
+
+
+.technologies-heading h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(
+        42px,
+        6vw,
+        75px
+    );
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+}
+
+
+.technologies-heading h2 span {
+
+    color: #00b8e6;
+
+}
+
+
+.technologies-heading p {
+
+    max-width: 700px;
+
+    margin-top: 25px;
+
+    color: #73818a;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================
+   TECHNOLOGY CATEGORY
+========================================= */
+
+.tech-category {
+
+    max-width: 1150px;
+
+    margin: 0 auto 80px;
+
+}
+
+
+/* =========================================
+   CATEGORY HEADER
+========================================= */
+
+.tech-category-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.tech-number {
+
+    min-width: 42px;
+
+    color: #00b8e6;
+
+    font-family:
+        'Source Code Pro',
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.tech-category-header h3 {
+
+    margin: 0;
+
+    color: #e9eef1;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+}
+
+
+.tech-category-header p {
+
+    max-width: 600px;
+
+    margin: 7px 0 0;
+
+    color: #596770;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   TECHNOLOGY GRID
+========================================= */
+
+.tech-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+}
+
+
+/* =========================================
+   TECHNOLOGY CARD
+========================================= */
+
+.tech-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 70px;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(255,255,255,0.055);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+.tech-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 15px;
+    bottom: 15px;
+
+    width: 2px;
+
+    background: #00b8e6;
+
+    opacity: 0;
+
+    transition: 0.3s ease;
+
+}
+
+
+.tech-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(0,184,230,0.25);
+
+    background:
+        rgba(0,184,230,0.035);
+
+}
+
+
+.tech-card:hover::before {
+
+    opacity: 1;
+
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.tech-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    font-size: 17px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.tech-card:hover .tech-icon {
+
+    background:
+        rgba(0,184,230,0.08);
+
+}
+
+
+/* =========================================
+   TECHNOLOGY TEXT
+========================================= */
+
+.tech-card strong {
+
+    display: block;
+
+    color: #dce3e7;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+}
+
+
+.tech-card span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #56646d;
+
+    font-size: 8px;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================
+   TECHNOLOGY COLORS
+========================================= */
+
+
+/* Java */
+
+.tech-icon.java {
+
+    color: #f89820;
+
+}
+
+
+/* Python */
+
+.tech-icon.python {
+
+    color: #3776ab;
+
+}
+
+
+/* JavaScript */
+
+.tech-icon.javascript {
+
+    color: #f7df1e;
+
+}
+
+
+/* Spring */
+
+.tech-icon.spring {
+
+    color: #6db33f;
+
+}
+
+
+/* Node */
+
+.tech-icon.node {
+
+    color: #68a063;
+
+}
+
+
+/* Maven */
+
+.tech-icon.maven {
+
+    color: #c71a36;
+
+}
+
+
+/* Gradle */
+
+.tech-icon.gradle {
+
+    color: #23a9e8;
+
+}
+
+
+/* HTML */
+
+.tech-icon.html {
+
+    color: #e34f26;
+
+}
+
+
+/* CSS */
+
+.tech-icon.css {
+
+    color: #1572b6;
+
+}
+
+
+/* Bootstrap */
+
+.tech-icon.bootstrap {
+
+    color: #7952b3;
+
+}
+
+
+/* Mongo */
+
+.tech-icon.mongodb {
+
+    color: #47a248;
+
+}
+
+
+/* SQL */
+
+.tech-icon.sql {
+
+    color: #00b8e6;
+
+}
+
+
+/* Docker */
+
+.tech-icon.docker {
+
+    color: #2496ed;
+
+}
+
+
+/* Git */
+
+.tech-icon.git {
+
+    color: #f05032;
+
+}
+
+
+/* GitHub */
+
+.tech-icon.github {
+
+    color: #ffffff;
+
+}
+
+
+/* VS Code */
+
+.tech-icon.vscode {
+
+    color: #007acc;
+
+}
+
+
+/* Android */
+
+.tech-icon.android {
+
+    color: #3ddc84;
+
+}
+
+
+/* Linux */
+
+.tech-icon.linux {
+
+    color: #f5c518;
+
+}
+
+
+/* Windows */
+
+.tech-icon.windows {
+
+    color: #00a4ef;
+
+}
+
+
+/* Networking */
+
+.tech-icon.networking,
+.tech-icon.network {
+
+    color: #00b8e6;
+
+}
+
+
+/* VPN */
+
+.tech-icon.vpn {
+
+    color: #8c9eff;
+
+}
+
+
+/* Tailscale */
+
+.tech-icon.tailscale {
+
+    color: #8b8cff;
+
+}
+
+
+/* Nmap */
+
+.tech-icon.nmap {
+
+    color: #5ac8fa;
+
+}
+
+
+/* Security */
+
+.tech-icon.security {
+
+    color: #ffb454;
+
+}
+
+
+/* Burp Suite */
+
+.tech-icon.burp {
+
+    color: #ff6633;
+
+}
+
+
+/* Weka */
+
+.tech-icon.weka {
+
+    color: #00b8e6;
+
+}
+
+
+/* AI */
+
+.tech-icon.ml {
+
+    color: #c084fc;
+
+}
+
+
+/* Data */
+
+.tech-icon.data {
+
+    color: #38bdf8;
+
+}
+
+
+/* Analytics */
+
+.tech-icon.analytics {
+
+    color: #4ade80;
+
+}
+
+
+/* API */
+
+.tech-icon.api {
+
+    color: #f59e0b;
+
+}
+
+
+/* Postman */
+
+.tech-icon.postman {
+
+    color: #ff6c37;
+
+}
+
+
+/* Testing */
+
+.tech-icon.testing {
+
+    color: #a78bfa;
+
+}
+
+
+/* Debugging */
+
+.tech-icon.debugging {
+
+    color: #ff6b6b;
+
+}
+
+
+/* Terminal */
+
+.tech-icon.terminal,
+.tech-icon.cmd {
+
+    color: #a3e635;
+
+}
+
+
+/* Architecture */
+
+.tech-icon.architecture {
+
+    color: #22d3ee;
+
+}
+
+
+/* Cloud */
+
+.tech-icon.cloud {
+
+    color: #60a5fa;
+
+}
+
+
+/* Tunnel */
+
+.tech-icon.tunnel {
+
+    color: #00b8e6;
+
+}
+
+
+/* Microservices */
+
+.tech-icon.microservices {
+
+    color: #f472b6;
+
+}
+
+
+/* DBMS */
+
+.tech-icon.dbms {
+
+    color: #14b8a6;
+
+}
+
+
+/* Shell */
+
+.tech-icon.shell {
+
+    color: #bef264;
+
+}
+
+
+/* =========================================
+   CATEGORY DIVIDER
+========================================= */
+
+.tech-category:not(:last-child)::after {
+
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-top: 75px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.06),
+            transparent
+        );
+
+}
+/* =========================================
+   TECHNOLOGY RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .tech-grid {
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .technologies-section {
+
+        padding: 100px 30px;
+
+    }
+
+
+    .technologies-heading {
+
+        margin-bottom: 70px;
+
+    }
+
+
+    .tech-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+    }
+
+
+    .tech-category {
+
+        margin-bottom: 60px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .technologies-section {
+
+        padding: 80px 20px;
+
+    }
+
+
+    .technologies-heading h2 {
+
+        font-size: 42px;
+
+        letter-spacing: -2px;
+
+    }
+
+
+    .tech-category-header {
+
+        gap: 15px;
+
+    }
+
+
+    .tech-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .tech-category-header h3 {
+
+        font-size: 17px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   CONNECT SECTION
+========================================= */
+
+.connect-section {
+
+    position: relative;
+
+    padding: 140px 8% 60px;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,184,230,0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(0,184,230,0.05),
+            transparent 30%
+        ),
+        #03090e;
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.connect-heading {
+
+    max-width: 850px;
+
+    margin: 0 auto 90px;
+
+}
+
+
+.connect-heading h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(
+        45px,
+        6vw,
+        75px
+    );
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+}
+
+
+.connect-heading h2 span {
+
+    color: #00b8e6;
+
+}
+
+
+.connect-heading p {
+
+    max-width: 700px;
+
+    margin-top: 25px;
+
+    color: #71808a;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================
+   PRIMARY CONTACT
+========================================= */
+
+.connect-primary {
+
+    max-width: 1150px;
+
+    margin: 0 auto 100px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+
+}
+
+
+.contact-main-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(255,255,255,0.06);
+
+    border-radius: 12px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.contact-main-card:hover {
+
+    border-color:
+        rgba(0,184,230,0.3);
+
+    transform: translateY(-4px);
+
+}
+
+
+.contact-main-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: #00b8e6;
+
+    background:
+        rgba(0,184,230,0.08);
+
+}
+
+
+.contact-main-card span {
+
+    display: block;
+
+    color: #53636d;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.contact-main-card a,
+.contact-main-card p {
+
+    display: block;
+
+    margin: 5px 0 0;
+
+    color: #dce4e8;
+
+    font-size: 11px;
+
+    text-decoration: none;
+
+}
+
+
+/* =========================================
+   GROUP
+========================================= */
+
+.connect-group {
+
+    max-width: 1150px;
+
+    margin: 0 auto 90px;
+
+}
+
+
+.connect-group-title {
+
+    display: flex;
+
+    gap: 25px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.connect-group-title > span {
+
+    color: #00b8e6;
+
+    font-family:
+        'Source Code Pro',
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.connect-group-title h3 {
+
+    margin: 0;
+
+    color: #e9eef1;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+}
+
+
+.connect-group-title p {
+
+    margin: 6px 0 0;
+
+    color: #56656e;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================
+   PROFILE GRID
+========================================= */
+
+.profile-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.profile-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 70px;
+
+    padding: 14px 16px;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(255,255,255,0.055);
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+.profile-card:hover {
+
+    transform: translateY(-5px);
+
+    background:
+        rgba(0,184,230,0.035);
+
+    border-color:
+        rgba(0,184,230,0.25);
+
+}
+
+
+.profile-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    color: #00b8e6;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    font-size: 17px;
+
+}
+
+
+.profile-card strong {
+
+    display: block;
+
+    color: #dce4e8;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+}
+
+
+.profile-card span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #53636d;
+
+    font-size: 8px;
+
+}
+
+
+.profile-arrow {
+
+    margin-left: auto;
+
+    color: #35434b;
+
+    font-size: 9px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.profile-card:hover .profile-arrow {
+
+    color: #00b8e6;
+
+    transform:
+        translate(2px, -2px);
+
+}
+
+
+/* =========================================
+   PLATFORM COLORS
+========================================= */
+
+.instagram .profile-icon {
+    color: #e4405f;
+}
+
+.whatsapp .profile-icon {
+    color: #25d366;
+}
+
+.facebook .profile-icon {
+    color: #1877f2;
+}
+
+.telegram .profile-icon {
+    color: #229ed9;
+}
+
+.github .profile-icon {
+    color: #ffffff;
+}
+
+.linkedin .profile-icon {
+    color: #0a66c2;
+}
+
+.leetcode .profile-icon {
+    color: #ffa116;
+}
+
+.codechef .profile-icon {
+    color: #b7864b;
+}
+
+.codecheckers .profile-icon {
+    color: #00b8e6;
+}
+
+.hackerrank .profile-icon {
+    color: #00ea64;
+}
+
+.career .profile-icon {
+    color: #00b8e6;
+}
+
+
+/* =========================================
+   RESUME
+========================================= */
+
+.resume-card {
+
+    max-width: 1150px;
+
+    margin: 0 auto 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,184,230,0.07),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid rgba(0,184,230,0.15);
+
+    border-radius: 15px;
+
+}
+
+
+.resume-content {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.resume-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #00b8e6;
+
+    background:
+        rgba(0,184,230,0.08);
+
+    border-radius: 12px;
+
+    font-size: 21px;
+
+}
+
+
+.resume-content span {
+
+    color: #00b8e6;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+}
+
+
+.resume-content h3 {
+
+    margin: 7px 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+}
+
+
+.resume-content p {
+
+    margin: 0;
+
+    color: #65747d;
+
+    font-size: 10px;
+
+}
+
+
+.resume-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.resume-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.resume-btn.view {
+
+    color: #00b8e6;
+
+    border:
+        1px solid rgba(0,184,230,0.3);
+
+}
+
+
+.resume-btn.download {
+
+    color: #02080c;
+
+    background: #00b8e6;
+
+}
+
+
+.resume-btn:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+/* =========================================
+   ACADEMIC INFORMATION
+========================================= */
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.info-card {
+
+    padding: 20px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(255,255,255,0.05);
+
+    border-radius: 10px;
+
+}
+
+
+.info-card span {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #4e5e67;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.info-card strong {
+
+    display: block;
+
+    color: #cfd8dc;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================
+   PERSONAL INFORMATION
+========================================= */
+
+.personal-card {
+
+    padding: 10px 25px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border:
+        1px solid rgba(255,255,255,0.05);
+
+    border-radius: 12px;
+
+}
+
+
+.personal-row {
+
+    display: grid;
+
+    grid-template-columns: 200px 1fr;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.05);
+
+}
+
+
+.personal-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.personal-row span {
+
+    color: #52616a;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.personal-row strong {
+
+    color: #cbd4d8;
+
+    font-size: 10px;
+
+    font-weight: 400;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================
+   FINAL CTA
+========================================= */
+
+.connect-final {
+
+    max-width: 700px;
+
+    margin: 120px auto 100px;
+
+    text-align: center;
+
+}
+
+
+.final-line {
+
+    width: 50px;
+
+    height: 3px;
+
+    margin: 0 auto 30px;
+
+    background: #00b8e6;
+
+}
+
+
+.connect-final h3 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+}
+
+
+.connect-final p {
+
+    margin: 10px 0 25px;
+
+    color: #61717a;
+
+    font-size: 12px;
+
+}
+
+
+.connect-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 25px;
+
+    color: #031016;
+
+    background: #00b8e6;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+
+}
+
+
+.connect-btn:hover {
+
+    background: #ffffff;
+
+    transform: translateY(-3px);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.portfolio-footer {
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+}
+
+
+.footer-line {
+
+    height: 1px;
+
+    width: 100%;
+
+    margin-bottom: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.08),
+            transparent
+        );
+
+}
+
+
+.portfolio-footer p {
+
+    margin: 0;
+
+    color: #7b8990;
+
+    font-family:
+        'Source Code Pro',
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.portfolio-footer p span {
+
+    color: #00b8e6;
+
+    margin: 0 8px;
+
+}
+
+
+.portfolio-footer small {
+
+    display: block;
+
+    margin-top: 15px;
+
+    color: #3e4a51;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .connect-primary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .profile-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .resume-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .connect-section {
+
+        padding: 100px 25px 40px;
+
+    }
+
+
+    .connect-heading h2 {
+
+        font-size: 45px;
+
+    }
+
+
+    .profile-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .personal-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+
+    }
+
+
+    .resume-content {
+
+        align-items: flex-start;
+
+    }
+
+
+    .resume-buttons {
+
+        width: 100%;
+
+        flex-direction: column;
+
+    }
+
+
+    .resume-btn {
+
+        justify-content: center;
+
+    }
+
+
+    .portfolio-footer p {
+
+        line-height: 2;
+
+    }
+
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         LEFT SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+    <div class="profile">
+
+        <img
+            src="YOUR_PROFILE_IMAGE.jpg"
+            alt="Phani Pamarthi"
+            class="profile-image"
+        >
+
+        <div class="profile-name">
+            Phanindra Pamarthi
+        </div>
+
+        <div class="profile-role">
+            Software Engineer
+        </div>
+
+    </div>
+
+
+    <div class="social-icons">
+
+        <a href="https://github.com/phani05040" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/devi-phanindra-pamarthi-26012b286"
+           target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="mailto:dphani0504@gmail.com">
+            <i class="fas fa-envelope"></i>
+        </a>
+
+    </div>
+
+
+    <nav class="side-nav">
+
+        <ul>
+
+            <li>
+                <a href="#home" class="active">
+                    <i class="fas fa-house"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#gallery">
+                    <i class="fas fa-images"></i>
+                    <span>Gallery</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#education">
+                    <i class="fas fa-pen-nib"></i>
+                    <span>Education</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#certifications">
+                    <i class="fas fa-certificate"></i>
+                    <span>Certifications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#achievements">
+                    <i class="fas fa-trophy"></i>
+                    <span>Achievements</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#technologies">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Technologies</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#connect">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Connect</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</aside>
+
+<main class="main">
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Hello, I'm
+            </div>
+
+            <h1 class="hero-title">
+                Phanindra <span>Pamarthi</span>
+            </h1>
+
+            <p class="hero-description">
+                Computer Science Engineering student passionate about
+                software development, backend architecture, artificial
+                intelligence and emerging technologies.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="hero-btn primary">
+                    Explore My Work
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <a href="#connect" class="hero-btn secondary">
+                    Let's Connect
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="scroll-indicator">
+
+            <div class="scroll-line"></div>
+
+            <span>Scroll</span>
+
+        </div>
+
+    </section>
+
+    <!--Education section   -->
+
+    <section class="education-section" id="education">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            <br>
+            <br>
+            <br>
+            MY JOURNEY
+        </span>
+
+        <h2>
+            Education <span>& Learning</span>
+        </h2>
+
+        <p>
+            My academic journey from schooling to engineering,
+            along with the additional technologies and skills
+            I have developed along the way.
+        </p>
+
+    </div>
+
+
+    <div class="education-timeline">
+
+
+        <!-- =====================================
+             SCHOOL
+        ====================================== -->
+
+        <div class="education-item">
+
+            <div class="timeline-dot">
+                <i class="fas fa-school"></i>
+            </div>
+
+            <div class="education-card">
+
+                <div class="education-year">
+                    2020 — 2021
+                </div>
+
+                <h3>
+                    A Littel Fower The Leader IIT and Medical Foundation Schools.
+                </h3>
+
+                <h4>
+                    Schooling 10Th
+                </h4>
+
+                <div class="education-location">
+                    <i class="fas fa-location-dot"></i>
+                    Machilipatnam, Andhra Pradesh
+                </div>
+
+                <p class="education-description">
+                    Completed my schooling at A Littel Fower The Leader IIT and Medical Foundation Schools,
+                    where I developed a strong foundation in
+                    academics, logical thinking, communication
+                    and problem-solving.
+                </p>
+
+                <div class="education-details">
+
+                    <div class="detail">
+                        <span>Education</span>
+                        <strong>SSC</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Percentage / CGPA</span>
+                        <strong>10.00 / 10.00 CGPA</strong>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             DIPLOMA / INTERMEDIATE
+        ====================================== -->
+
+        <div class="education-item">
+
+            <div class="timeline-dot">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+
+            <div class="education-card">
+
+                <div class="education-year">
+                    2021 — 2024
+                </div>
+
+                <h3>
+                    VKR VNB Polytechnic College
+                </h3>
+
+                <h4>
+                    Diploma in Computer Engineering
+                </h4>
+
+                <div class="education-location">
+                    <i class="fas fa-location-dot"></i>
+                    Gudivada, Andhra Pradesh
+                </div>
+
+                <p class="education-description">
+                    Pursued my diploma in Computer Engineering, gaining
+                    practical exposure to programming,
+                    software development, databases and
+                    computer science fundamentals.
+                </p>
+
+                <div class="education-details">
+
+                    <div class="detail">
+                        <span>Branch</span>
+                        <strong>Computer Engineering</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Percentage</span>
+                        <strong>78%</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="learning">
+
+                    <h5>
+                        Technologies Learned
+                    </h5>
+
+                    <div class="tech-tags">
+
+                        <span>Java</span>
+                        <span>Python</span>
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>SQL</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             B.TECH
+        ====================================== -->
+
+        <div class="education-item current">
+
+            <div class="timeline-dot">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+
+            <div class="education-card">
+
+                <div class="education-year">
+                    2024 — 2027
+                </div>
+
+                <div class="current-badge">
+                    CURRENTLY PURSUING
+                </div>
+
+                <h3>
+                    Seshadri Rao Gudlavalleru Engineering College
+                </h3>
+
+                <h4>
+                    B.Tech in Computer Science
+                </h4>
+
+                <div class="education-location">
+                    <i class="fas fa-location-dot"></i>
+                    Gudlavalleru, Andhra Pradesh
+                </div>
+
+                <p class="education-description">
+                    Currently pursuing my Bachelor's degree in
+                    Computer Science Field. My studies focus on software
+                    engineering, backend development, system
+                    architecture, artificial intelligence and
+                    modern technologies.
+                </p>
+
+                <div class="education-details">
+
+                    <div class="detail">
+                        <span>Branch</span>
+                        <strong>
+                            Computer Science Engineering
+                        </strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>CGPA</span>
+                        <strong>
+                            [7.2 / 10]
+                        </strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Year</span>
+                        <strong>
+                            Final Year
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="learning">
+
+                    <h5>
+                        Technologies & Skills Learned
+                    </h5>
+
+                    <div class="tech-tags">
+
+                        <span>Java</span>
+                        <span>Python</span>
+                        <span>Spring Boot</span>
+                        <span>Microservices</span>
+                        <span>SQL</span>
+                        <span>MongoDB</span>
+                        <span>JavaScript</span>
+                        <span>HTML & CSS</span>
+                        <span>Git & GitHub</span>
+                        <span>Docker</span>
+                        <span>AI / ML</span>
+                        <span>Cloud</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="learning">
+
+                    <h5>
+                        Additional Learning
+                    </h5>
+
+                    <div class="tech-tags">
+
+                        <span>Certification</span>
+                        <span>Workshop</span>
+                        <span>Hackathon</span>
+                        <span>Online Course</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+<!---------------------------------Certificates-->
+<!-- =========================================
+     CERTIFICATIONS SECTION
+========================================= -->
+
+<section class="certifications-section" id="certifications">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            CREDENTIALS
+        </span>
+
+        <h2>
+            Certifications <span>&amp; Achievements</span>
+        </h2>
+
+        <p>
+            A collection of certifications and professional
+            learning experiences that represent my continuous
+            growth in technology.
+        </p>
+
+    </div>
+
+
+    <div class="certifications-grid">
+
+
+        <!-- =====================================
+             CERTIFICATE 01
+        ====================================== -->
+
+        <a href="gallery.html#certificate-01"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+
+                <span class="certificate-number">
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about what you
+                    learned or achieved through this
+                    certification.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================================
+             CERTIFICATE 02
+        ====================================== -->
+
+        <a href="gallery.html#certificate-02"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+
+                <span class="certificate-number">
+                    02
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about this
+                    certification and the skills gained.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================================
+             CERTIFICATE 03
+        ====================================== -->
+
+        <a href="gallery.html#certificate-03"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+
+                <span class="certificate-number">
+                    03
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about this
+                    certification.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================================
+             CERTIFICATE 04
+        ====================================== -->
+
+        <a href="gallery.html#certificate-04"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <span class="certificate-number">
+                    04
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about this
+                    certification.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================================
+             CERTIFICATE 05
+        ====================================== -->
+
+        <a href="gallery.html#certificate-05"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+
+                <span class="certificate-number">
+                    05
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about this
+                    certification.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- =====================================
+             CERTIFICATE 06
+        ====================================== -->
+
+        <a href="gallery.html#certificate-06"
+           class="certificate-card">
+
+            <div class="certificate-top">
+
+                <div class="certificate-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+
+                <span class="certificate-number">
+                    06
+                </span>
+
+            </div>
+
+
+            <div class="certificate-content">
+
+                <span class="certificate-type">
+                    CERTIFICATION
+                </span>
+
+                <h3>
+                    [Certificate Name]
+                </h3>
+
+                <p>
+                    [Short description about this
+                    certification.]
+                </p>
+
+            </div>
+
+
+            <div class="certificate-footer">
+
+                <div>
+                    <span>ISSUED BY</span>
+                    <strong>[Organization Name]</strong>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square"></i>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     PROJECTS SECTION
+========================================= -->
+
+<section class="projects-section" id="projects">
+
+    <!-- SECTION HEADER -->
+
+    <div class="section-heading projects-heading">
+
+        <span class="section-label">
+            Proofs OF WORK
+        </span>
+
+        <h2>
+            Projects <span>&amp; Case Studies</span>
+        </h2>
+
+        <p>
+            A collection of projects where I transform ideas
+            into practical software solutions while exploring
+            modern technologies and system architectures.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================
+         PROJECT 01
+    ====================================== -->
+
+    <article class="project-card">
+
+
+        <!-- PROJECT THUMBNAIL -->
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-01.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+
+                <span>
+                    PROJECT 01
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROJECT CONTENT -->
+
+        <div class="project-content">
+
+
+            <!-- PROJECT HEADER -->
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        Desktop Application
+                    </span>
+
+                    <h3>
+                        My Vehicle Rental System
+                    </h3>
+
+                    <p class="project-tagline">
+                        My Finalyear Project In polytechnic where i built a Vehicle Rental System. It is a desktop application that allows users to rent vehicles online. It provides a user-friendly interface for browsing available vehicles, making reservations, and managing rental transactions. The system also includes features for vehicle owners to list their vehicles and track rental activity.
+                    </p>
+
+                </div>
+
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+
+            <!-- PROJECT DESCRIPTION -->
+
+            <div class="project-description">
+
+                <h4>
+                    About The Project
+                </h4>
+
+                <p> 
+                    I used The Java Technology to build this project. I learnt and used the Java Swing framework to create the user interface, allowing users to interact with the application through graphical components such as buttons, forms, and tables. The system utilizes a database to store information about vehicles, users, and rental transactions. It provides features for vehicle owners to add their vehicles, set rental prices, and manage availability. Users can browse available vehicles, view details, make reservations, and track their rental history.
+                </p>
+
+            </div>
+
+
+
+            <!-- WHAT I BUILT -->
+
+            <div class="project-subsection">
+
+                <h4>
+                    What I Built
+                </h4>
+
+                <div class="project-points">
+
+                    <div class="project-point">
+
+                        <span class="point-icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        <p>
+                            Concuriency control
+                        </p>
+
+                    </div>
+
+
+                    <div class="project-point">
+
+                        <span class="point-icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        <p>
+                            Backend logic for vehicle rental management
+                        </p>
+
+                    </div>
+
+
+                    <div class="project-point">
+
+                        <span class="point-icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        <p>
+                            User interface for browsing and reserving vehicles
+                        </p>
+
+                    </div>
+
+
+                    <div class="project-point">
+
+                        <span class="point-icon">
+                            <i class="fas fa-check"></i>
+                        </span>
+
+                        <p>
+                            Database integration for storing and retrieving vehicle and user information
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 TECHNOLOGIES
+            ================================== -->
+
+            <div class="project-subsection">
+
+                <h4>
+                    Technologies &amp; Tools
+                </h4>
+
+
+                <div class="technology-grid">
+
+
+                    <!-- JAVA -->
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon java">
+                            <i class="fab fa-java"></i>
+                        </div>
+
+                        <div>
+                            <strong>Java</strong>
+                            <span>
+                                Backend Development
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- SPRING BOOT -->
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon spring">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+
+                        <div>
+                            <strong>Spring Boot</strong>
+                            <span>
+                                Backend Framework
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                   
+
+
+                    <!-- GITHUB -->
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon github">
+                            <i class="fab fa-github"></i>
+                        </div>
+
+                        <div>
+                            <strong>GitHub</strong>
+                            <span>
+                                Version Control
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- MAVEN -->
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon maven">
+                            <i class="fas fa-cube"></i>
+                        </div>
+
+                        <div>
+                            <strong>Maven</strong>
+                            <span>
+                                Build Management
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    
+
+
+                    <!-- DATABASE -->
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>My SQL</strong>
+                            <span>
+                                Data Management in localhost
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 CHALLENGES
+            ================================== -->
+
+            <div class="project-info-grid">
+
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>
+                            Challenges Faced
+                        </h4>
+
+                    </div>
+
+
+                    <ul>
+
+                        <li>
+                            [Challenge you faced while
+                            developing the project]
+                        </li>
+
+                        <li>
+                            [Technical problem and how
+                            you handled it]
+                        </li>
+
+                        <li>
+                            [Architecture / deployment /
+                            database challenge]
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- =================================
+                     LEARNING
+                ================================== -->
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>
+                            What I Learned
+                        </h4>
+
+                    </div>
+
+
+                    <ul>
+
+                        <li>
+                            The workflow of the data and how to handle concurency control
+                        </li>
+
+                        <li>
+                            The Archecture of the project and how to implement it in a real world scenario
+                        </li>
+
+                        <li>
+                            How to integrate the database with the backend and how to handle the data
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 MY CONTRIBUTION
+            ================================== -->
+
+            <div class="project-subsection contribution-section">
+
+                <h4>
+                    My Contributions
+                </h4>
+
+                <div class="contribution-grid">
+
+                    <div class="contribution-item">
+
+                        <span>01</span>
+
+                        <p>
+                            User interface for browsing and reserving vehicles
+                        </p>
+
+                    </div>
+
+
+                    <div class="contribution-item">
+
+                        <span>02</span>
+
+                        <p>
+                            The backend logic for vehicle rental management, including handling reservations, calculating rental costs, and managing vehicle availability.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contribution-item">
+
+                        <span>03</span>
+
+                        <p>
+                            Github repository management, including version control, code organization, and collaboration with team members.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contribution-item">
+
+                        <span>04</span>
+
+                        <p>
+                            Database integration for storing and retrieving vehicle and user information, ensuring data consistency and security.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PROJECT LINKS
+            ================================== -->
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/MyVelib_Bike_Sharing_System.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+
+                    <i class="fab fa-github"></i>
+
+                    <span>
+                        View Source Code
+                    </span>
+
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+
+                </a>
+
+
+                <a
+                    href="[LIVE PROJECT URL]"
+                    target="_blank"   desable
+                    class="project-btn live-btn"
+                >
+
+                    <i class="fas fa-globe"></i>
+
+                    <span>
+                        Live Project
+                    </span>
+
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =====================================
+         PROJECT 02
+    ====================================== -->
+
+    <article class="project-card">
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-02.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+                <span>PROJECT 02</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-content">
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        Backend Design
+                    </span>
+
+                    <h3>
+                        Result Server Management System
+                    </h3>
+
+                    <p class="project-tagline">
+                        Learning Load Balancing and isolation of the backend server and how to manage the server and how to handle the data in a real world scenario, My first ever project where i got the ral idea of API Like Things.
+                    </p>
+
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <h4>About The Project</h4>
+
+                <p>
+                    This Prroject i was built in the process of learning the API calls and writing business logics and handling the lig loads and many request at a time with out disturbing the other requests and how to handle the data in a real world scenario. I learnt the concepts of load balancing and isolation of the backend server and how to manage the server and how to handle the data in a real world scenario.I’ve focused on making it handle multiple users efficiently without putting too much load on the database.The system is designed in such a way that even if many users hit the server at the same time, it can manage the requests properly. It also avoids unnecessary database calls by handling requests in a controlled way.
+                </p>
+
+            </div>
+
+
+            <div class="project-subsection">
+
+                <h4>Technologies &amp; Tools</h4>
+
+                <div class="technology-grid">
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon java">
+                            <i class="fab fa-java"></i>
+                        </div>
+
+                        <div>
+                            <strong>Java</strong>
+                            <span>The Backend Business Logics</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>MySQL</strong>
+                            <span>The Database</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info-grid">
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>Challenges Faced</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>Many Users Sending Requests Same Time</li>
+                        <li>Caching The data</li>
+                        <li>Rate Limiting</li>
+                        <li>Load Balancing</li>
+                        <li>Api Design</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>What I Learned</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>Scalability</li>
+                        <li>Caching</li>
+                        <li>Authintication</li>
+                        <li>Database Design</li>
+                        <li>API WORKING     </li>
+                        <li>Performance Optimization</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/ResultServer.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a
+                    href="https://resultserver.vercel.app/" aria-disabled="false"
+                    target="_blank"
+                    class="project-btn live-btn"
+                >
+                    <i class="fas fa-globe"></i>
+                    <span>Live Project</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =====================================
+         PROJECT 03
+    ====================================== -->
+    <article class="project-card">
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-02.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+                <span>PROJECT 03</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-content">
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        Complete Application Design
+                    </span>
+
+                    <h3>
+                        Truth Or Dare Game
+                    </h3>
+
+                    <p class="project-tagline">
+                        This Project is a simple game where players take turns asking each other "truth" questions or giving "dare" challenges. The game can be played with friends or family, and it encourages honesty and creativity. Players can choose to answer a question truthfully or complete a dare, adding an element of fun and excitement to the game.
+                    </p>
+
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <h4>About The Project</h4>
+
+                <p>
+                    This is a Learning Project where i learnt the concepts of how to build a complete application and how to handle the data and how to manage the application and how to handle the requests and how to manage the data in a real world scenario. I’ve focused on making it handle 2 users efficiently without putting too much load on the database.The Simple use case like one request at a time and the focus is more on authentication and business logic and the archecture of the project.    
+                </p>
+
+            </div>
+
+
+            <div class="project-subsection">
+
+                <h4>Technologies &amp; Tools</h4>
+
+                <div class="technology-grid">
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon java">
+                            <i class="fab fa-java"></i>
+                        </div>
+
+                        <div>
+                            <strong>Java</strong>
+                            <span>The Backend Business Logics</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>MySQL</strong>
+                            <span>The Database</span>
+                        </div>
+
+                    </div>
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-docker"></i>
+                        </div>
+
+                        <div>
+                            <strong>Docker</strong>
+                            <span>Containerization(Muliple development environments)</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-github"></i>
+                        </div>
+
+                        <div>
+                            <strong>GitHub</strong>
+                            <span>Version Control</span>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info-grid">
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>Challenges Faced</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>UI Design</li>
+                        <li>API Integration</li>
+                        <li>API Calling</li>
+                        <li>Version Control</li>
+                        <li>Learning Gradle</li>
+                        <li>Server Configuration</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>What I Learned</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>Connectivity</li>
+                        <li>API Integration</li>
+                        <li>Gradle</li>
+                        <li>Dockerization</li>
+                        <li>Server Configuration</li>
+                        <li>IP and Cloudflare working</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/PhanisApplication.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a
+                    href="https://phanisapplication.vercel.app/" aria-disabled="false"
+                    target="_blank"
+                    class="project-btn live-btn"
+                >
+                    <i class="fas fa-globe"></i>
+                    <span>Live Project</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- =====================================
+         PROJECT 04
+    ====================================== -->
+    <article class="project-card">
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-04.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+                <span>PROJECT 04</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-content">
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        AI Chatbot Virtual Assistant
+                    </span>
+
+                    <h3>
+                        Intelligent Healthcare Assistant Using IBM Granite
+                    </h3>
+
+                    <p class="project-tagline">
+                        HealthAI is a smart healthcare assistant powered by IBM Watson Machine Learning and the Granite 13B model. It provides real-time, AI-driven support for users seeking accurate health insights, symptom prediction, home remedies, treatment suggestions, and vital analytics.                    
+                    </p>
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <h4>About The Project</h4>
+
+                <p>
+                    
+                    My First Machine Learning Model of Project, HealthAI is a smart healthcare assistant powered by IBM Watson Machine Learning and the Granite 13B model. It provides real-time, AI-driven support for users seeking accurate health insights, symptom prediction, home remedies, treatment suggestions, and vital analytics. The system leverages advanced machine learning algorithms to analyze user inputs and deliver personalized recommendations. With its intuitive interface and robust backend architecture, HealthAI aims to enhance healthcare accessibility and empower users to make informed decisions about their well-being.    
+                </p>
+
+            </div>
+
+
+            <div class="project-subsection">
+
+                <h4>Technologies &amp; Tools</h4>
+
+                <div class="technology-grid">
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon python">
+                            <i class="fab fa-python"></i>
+                        </div>
+
+                        <div>
+                            <strong>Python</strong>
+                            <span>
+                                Libraries for Machine Learning and Data Analysis
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon FastAPI">
+                            <i class="fas fa-pyton"></i>
+                        </div>
+
+                        <div>
+                            <strong>FastAPI</strong>
+                            <span>Backend Framework for building APIs</span>
+                        </div>
+
+                    </div>
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon docker">
+                            <i class="fas fa-docker"></i>
+                        </div>
+
+                        <div>
+                            <strong>Docker</strong>
+                            <span>Containerization(Muliple development environments)</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-github"></i>
+                        </div>
+
+                        <div>
+                            <strong>GitHub</strong>
+                            <span>Version Control</span>
+                        </div>
+
+                    </div>
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-javascript"></i>
+                        </div>
+
+                        <div>
+                            <strong>JavaScript</strong>
+                            <span>Frontend Development</span>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info-grid">
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>Challenges Faced</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>UI Design</li>
+                        <li>Machine Learning Algorithms</li>
+                        <li>FastAPI Development</li>
+                        <li>API Integration</li>
+                        <li>Dockerization and Deployment</li>
+                        <li>API Routing</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>What I Learned</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>IBM Granite responds to symptom inputs and treatment prompts</li>
+                        <li>FastAPI for building APIs and handling requests</li>
+                        <li>Dockerization for containerizing the application</li>
+                        <li>Chat interface, health data forms, visualizations</li>
+                        <li>Python libraries for data processing and analysis and machine learning</li>
+                        <li>Visualizations for data representation</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/Project_IBM_Doctor.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a
+                    href="https://project-ibm-doctor.vercel.app/" aria-disabled="false"
+                    target="_blank"
+                    class="project-btn live-btn"
+                >
+                    <i class="fas fa-globe"></i>
+                    <span>Live Project</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    <!-- =====================================
+         PROJECT 05
+    ====================================== -->
+    <article class="project-card">
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-05.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+                <span>PROJECT 05</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-content">
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        
+                    </span>
+
+                    <h3>
+                        Carbon Footprint tracker
+                    </h3>
+
+                    <p class="project-tagline">
+                        This Project is a simple application that allows users to track their carbon footprint and take steps to reduce it.
+                    </p>
+
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <h4>About The Project</h4>
+
+                <p>
+                    This project is the part of my academic project summer Internship Associated with Smartbridge and Gained the certificate for sucessfully completion of the projejct, the project is a simple application that allows users to track their carbon footprint and take steps to reduce it. The application provides a user-friendly interface where users can input their daily activities, such as transportation, energy consumption, and waste generation. Based on the input data, the application calculates the user's carbon footprint and provides insights into areas where they can make improvements. Additionally, the application offers tips and suggestions for reducing carbon emissions, such as using public transportation, conserving energy, and adopting sustainable practices. Overall, this project aims to raise awareness about environmental sustainability and encourage individuals to take action towards reducing their carbon footprint.
+                </p>
+
+            </div>
+
+
+            <div class="project-subsection">
+
+                <h4>Technologies &amp; Tools</h4>
+
+                <div class="technology-grid">
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon java">
+                            <i class="fab fa-python"></i>
+                        </div>
+
+                        <div>
+                            <strong>Python</strong>
+                            <span>ML and Data Visualization</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>MongoDB</strong>
+                            <span>The Database</span>
+                        </div>
+
+                    </div>
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-docker"></i>
+                        </div>
+
+                        <div>
+                            <strong>Docker</strong>
+                            <span>Containerization(Muliple development environments)</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-github"></i>
+                        </div>
+
+                        <div>
+                            <strong>GitHub</strong>
+                            <span>Version Control</span>
+                        </div>
+
+                    </div>
+                    
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>Firebase</strong>
+                            <span>Backend Services</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info-grid">
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>Challenges Faced</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>UI Design</li>
+                        <li>frontend Development</li>
+                        <li>Backend Development</li>
+                        <li>Version Control</li>
+                        <li>NPM </li>
+                        <li>React</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>What I Learned</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>Backend And Frontend Commpunication</li>
+                        <li>Vercel Deployment</li>
+                        <li>Python Visualization</li>
+                        <li>Dockerization</li>
+                        <li>Firebase API Integration</li>
+                        <li>Authentication and Authorization</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/summerPro.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a
+                    href="https://phanisapplication.vercel.app/" aria-disabled="false"
+                    target="_blank"
+                    class="project-btn live-btn"
+                >
+                    <i class="fas fa-globe"></i>
+                    <span>Live Project</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <!-- =====================================
+         PROJECT 06
+    ====================================== -->
+    <article class="project-card">
+
+        <div class="project-image">
+
+            <img
+                src="assets/projects/project-02.jpg"
+                alt="[Project Name]"
+            >
+
+            <div class="project-image-overlay">
+                <span>PROJECT 06</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-content">
+
+            <div class="project-header">
+
+                <div>
+
+                    <span class="project-category">
+                        Complete Web Application Design
+                    </span>
+
+                    <h3>
+                        Hostel Management System
+                    </h3>
+
+                    <p class="project-tagline">
+                        This Project the part of academic project for the semister 3-2 where i learnt the technology of MERN Stack and how to build a complete application and how to handle the data and how to manage the application and how to handle the requests and how to manage the data in a real world scenario. I’ve focused on making it handle 2 users efficiently without putting too much load on the database.The Simple use case like one request at a time and the focus is more on authentication and business logic and the archecture of the project.
+                    </p>
+
+                </div>
+
+                <div class="project-status">
+                    <span class="status-dot"></span>
+                    Completed
+                </div>
+
+            </div>
+
+
+            <div class="project-description">
+
+                <h4>About The Project</h4>
+
+                <p>
+                    This project i learnt what the MERN Stack is and how to build a complete application and how to handle the data and how to manage the application and how to handle the requests and how to manage the data in a real world scenario. I’ve focused on making it handle 2 users efficiently without putting too much load on the database.The Simple use case like one request at a time and the focus is more on authentication and business logic and the archecture of the project.
+                </p>
+
+            </div>
+
+
+            <div class="project-subsection">
+
+                <h4>Technologies &amp; Tools</h4>
+
+                <div class="technology-grid">
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon java">
+                            <i class="fab fa-java"></i>
+                        </div>
+
+                        <div>
+                            <strong>MongoDB</strong>
+                            <span>The Backend Business Logics</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <div>
+                            <strong>Express.js</strong>
+                            <span>The Backend Framework</span>
+                        </div>
+
+                    </div>
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-docker"></i>
+                        </div>
+
+                        <div>
+                            <strong>Node.js</strong>
+                            <span>Server-Side JavaScript Runtime</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="technology-card">
+
+                        <div class="technology-icon database">
+                            <i class="fas fa-github"></i>
+                        </div>
+
+                        <div>
+                            <strong>React</strong>
+                            <span>Frontend Library</span>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+
+            <div class="project-info-grid">
+
+                <div class="project-info-box challenge-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-triangle-exclamation"></i>
+                        </div>
+
+                        <h4>Challenges Faced</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>UI Design</li>
+                        <li>frontend Development</li>
+                        <li>Backend Development</li>
+                        <li>Version Control</li>
+                        <li>NPM </li>
+                        <li>React</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="project-info-box learning-box">
+
+                    <div class="info-box-heading">
+
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+
+                        <h4>What I Learned</h4>
+
+                    </div>
+
+                    <ul>
+                        <li>Frontend Design</li>
+                        <li>MongoDB</li>
+                        <li>Express.js Node.js React</li>
+                        <li>MERN TECHNOLOGY</li>
+                        <li>node modules</li>
+                        <li>cors</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-links">
+
+                <a
+                    href="https://github.com/phani05040/Project_K.git"
+                    target="_blank"
+                    class="project-btn github-btn"
+                >
+                    <i class="fab fa-github"></i>
+                    <span>View Source Code</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+                <a
+                    href="https://phanisapplication.vercel.app/" aria-disabled="false"
+                    target="_blank"
+                    class="project-btn live-btn"
+                >
+                    <i class="fas fa-globe"></i>
+                    <span>Live Project</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+
+</section>
+
+
+
+
+
+
+<!--Techonilogies Section       -->
+
+
+
+<!-- =========================================
+     TECHNOLOGIES SECTION
+========================================= -->
+
+<section class="technologies-section" id="technologies">
+
+    <!-- SECTION HEADER -->
+
+    <div class="section-heading technologies-heading">
+
+        <span class="section-label">
+            MY TECH STACK
+        </span>
+
+        <h2>
+            Technologies <span>&amp; Tools</span>
+        </h2>
+
+        <p>
+            Technologies, frameworks, development tools and
+            platforms I have explored and worked with throughout
+            my academic and project journey.
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================================
+         01. PROGRAMMING LANGUAGES
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                01
+            </span>
+
+            <div>
+                <h3>Programming</h3>
+
+                <p>
+                    Languages used for application development,
+                    scripting and problem solving.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <div class="tech-icon java">
+                    <i class="fab fa-java"></i>
+                </div>
+
+                <div>
+                    <strong>Java</strong>
+                    <span>Programming Language</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon python">
+                    <i class="fab fa-python"></i>
+                </div>
+
+                <div>
+                    <strong>Python</strong>
+                    <span>Programming &amp; AI</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon javascript">
+                    <i class="fab fa-js"></i>
+                </div>
+
+                <div>
+                    <strong>JavaScript</strong>
+                    <span>Programming Language</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon code">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <div>
+                    <strong>C / C++</strong>
+                    <span>Programming Fundamentals</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         02. BACKEND
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                02
+            </span>
+
+            <div>
+                <h3>Backend &amp; Frameworks</h3>
+
+                <p>
+                    Technologies used to build server-side
+                    applications, APIs and backend systems.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <div class="tech-icon spring">
+                    <i class="fas fa-leaf"></i>
+                </div>
+
+                <div>
+                    <strong>Spring Boot</strong>
+                    <span>Java Backend Framework</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon node">
+                    <i class="fab fa-node-js"></i>
+                </div>
+
+                <div>
+                    <strong>Node.js</strong>
+                    <span>Backend Runtime</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon api">
+                    <i class="fas fa-server"></i>
+                </div>
+
+                <div>
+                    <strong>REST APIs</strong>
+                    <span>API Development</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon microservices">
+                    <i class="fas fa-diagram-project"></i>
+                </div>
+
+                <div>
+                    <strong>Microservices</strong>
+                    <span>System Architecture</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon maven">
+                    <i class="fas fa-cube"></i>
+                </div>
+
+                <div>
+                    <strong>Maven</strong>
+                    <span>Build Management</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon gradle">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <strong>Gradle</strong>
+                    <span>Build Automation</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         03. WEB DEVELOPMENT
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                03
+            </span>
+
+            <div>
+                <h3>Web Development</h3>
+
+                <p>
+                    Frontend technologies used to create
+                    responsive and interactive web applications.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+                <div class="tech-icon html">
+                    <i class="fab fa-html5"></i>
+                </div>
+
+                <div>
+                    <strong>HTML5</strong>
+                    <span>Web Structure</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon css">
+                    <i class="fab fa-css3-alt"></i>
+                </div>
+
+                <div>
+                    <strong>CSS3</strong>
+                    <span>Styling &amp; UI</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon javascript">
+                    <i class="fab fa-js"></i>
+                </div>
+
+                <div>
+                    <strong>JavaScript</strong>
+                    <span>Web Interactivity</span>
+                </div>
+            </div>
+
+
+            <div class="tech-card">
+                <div class="tech-icon bootstrap">
+                    <i class="fab fa-bootstrap"></i>
+                </div>
+
+                <div>
+                    <strong>Bootstrap</strong>
+                    <span>Responsive UI</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         04. DATABASES
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                04
+            </span>
+
+            <div>
+                <h3>Databases</h3>
+
+                <p>
+                    Technologies used for storing, querying and
+                    managing application data.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon sql">
+                    <i class="fas fa-database"></i>
+                </div>
+
+                <div>
+                    <strong>SQL</strong>
+                    <span>Relational Databases</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon mongodb">
+                    <i class="fas fa-leaf"></i>
+                </div>
+
+                <div>
+                    <strong>MongoDB</strong>
+                    <span>NoSQL Database</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon dbms">
+                    <i class="fas fa-table"></i>
+                </div>
+
+                <div>
+                    <strong>DBMS</strong>
+                    <span>Database Management</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         05. DEVOPS & DEPLOYMENT
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                05
+            </span>
+
+            <div>
+                <h3>DevOps &amp; Deployment</h3>
+
+                <p>
+                    Tools and technologies used for deployment,
+                    containerization and infrastructure.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon docker">
+                    <i class="fab fa-docker"></i>
+                </div>
+
+                <div>
+                    <strong>Docker</strong>
+                    <span>Containerization</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon cloud">
+                    <i class="fas fa-cloud"></i>
+                </div>
+
+                <div>
+                    <strong>Cloudflare</strong>
+                    <span>Cloud &amp; Networking</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon tunnel">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+
+                <div>
+                    <strong>Cloudflared</strong>
+                    <span>Tunneling</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon tailscale">
+                    <i class="fas fa-share-nodes"></i>
+                </div>
+
+                <div>
+                    <strong>Tailscale</strong>
+                    <span>Private Networking</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         06. VERSION CONTROL & IDE
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                06
+            </span>
+
+            <div>
+                <h3>Development Tools</h3>
+
+                <p>
+                    Tools used for development, source control,
+                    debugging and project management.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon git">
+                    <i class="fab fa-git-alt"></i>
+                </div>
+
+                <div>
+                    <strong>Git</strong>
+                    <span>Version Control</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon github">
+                    <i class="fab fa-github"></i>
+                </div>
+
+                <div>
+                    <strong>GitHub</strong>
+                    <span>Code Hosting</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon vscode">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <div>
+                    <strong>VS Code</strong>
+                    <span>Code Editor</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon android">
+                    <i class="fab fa-android"></i>
+                </div>
+
+                <div>
+                    <strong>Android Studio</strong>
+                    <span>Android Development</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         07. ANDROID
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                07
+            </span>
+
+            <div>
+                <h3>Android Development</h3>
+
+                <p>
+                    Tools and technologies explored for
+                    Android application development.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon android">
+                    <i class="fab fa-android"></i>
+                </div>
+
+                <div>
+                    <strong>Android Studio</strong>
+                    <span>Android IDE</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon gradle">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+
+                <div>
+                    <strong>Gradle</strong>
+                    <span>Build System</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon java">
+                    <i class="fab fa-java"></i>
+                </div>
+
+                <div>
+                    <strong>Java</strong>
+                    <span>Android Development</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         08. NETWORKING
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                08
+            </span>
+
+            <div>
+                <h3>Networking &amp; Infrastructure</h3>
+
+                <p>
+                    Networking concepts and tools explored for
+                    system communication and infrastructure.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon networking">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+
+                <div>
+                    <strong>Computer Networking</strong>
+                    <span>Networking Fundamentals</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon vpn">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+
+                <div>
+                    <strong>VPN</strong>
+                    <span>Private Networking</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon tailscale">
+                    <i class="fas fa-share-nodes"></i>
+                </div>
+
+                <div>
+                    <strong>Tailscale</strong>
+                    <span>Mesh Networking</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon nmap">
+                    <i class="fas fa-radar"></i>
+                </div>
+
+                <div>
+                    <strong>Nmap</strong>
+                    <span>Network Discovery</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon network">
+                    <i class="fas fa-globe"></i>
+                </div>
+
+                <div>
+                    <strong>TCP/IP</strong>
+                    <span>Networking Concepts</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         09. OPERATING SYSTEMS
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                09
+            </span>
+
+            <div>
+                <h3>Operating Systems</h3>
+
+                <p>
+                    Operating systems and environments I have
+                    worked with or explored.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon linux">
+                    <i class="fab fa-linux"></i>
+                </div>
+
+                <div>
+                    <strong>Linux</strong>
+                    <span>Operating System</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon windows">
+                    <i class="fab fa-windows"></i>
+                </div>
+
+                <div>
+                    <strong>Windows</strong>
+                    <span>Operating System</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon terminal">
+                    <i class="fas fa-terminal"></i>
+                </div>
+
+                <div>
+                    <strong>Linux Terminal</strong>
+                    <span>Command Line</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon shell">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <div>
+                    <strong>Shell / CLI</strong>
+                    <span>System Interaction</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         10. CYBERSECURITY
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                10
+            </span>
+
+            <div>
+                <h3>Cybersecurity &amp; Security Tools</h3>
+
+                <p>
+                    Security concepts and tools explored for
+                    application and network security.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon burp">
+                    <i class="fas fa-bug"></i>
+                </div>
+
+                <div>
+                    <strong>Burp Suite</strong>
+                    <span>Web Security Testing</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon nmap">
+                    <i class="fas fa-radar"></i>
+                </div>
+
+                <div>
+                    <strong>Nmap</strong>
+                    <span>Network Scanning</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon security">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+
+                <div>
+                    <strong>Network Security</strong>
+                    <span>Security Fundamentals</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon security">
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div>
+                    <strong>Web Security</strong>
+                    <span>Security Concepts</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         11. DATA MINING
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                11
+            </span>
+
+            <div>
+                <h3>Data Mining</h3>
+
+                <p>
+                    Tools and concepts used for extracting,
+                    processing and analyzing useful patterns
+                    from datasets.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon weka">
+                    <i class="fas fa-chart-column"></i>
+                </div>
+
+                <div>
+                    <strong>Weka</strong>
+                    <span>Data Mining Tool</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon data">
+                    <i class="fas fa-database"></i>
+                </div>
+
+                <div>
+                    <strong>Data Mining</strong>
+                    <span>Data Analysis</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon analytics">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+
+                <div>
+                    <strong>Data Analysis</strong>
+                    <span>Data Processing</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         12. AI & MACHINE LEARNING
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                12
+            </span>
+
+            <div>
+                <h3>Artificial Intelligence &amp; ML</h3>
+
+                <p>
+                    Concepts and tools explored for machine
+                    learning, prediction and intelligent systems.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon python">
+                    <i class="fab fa-python"></i>
+                </div>
+
+                <div>
+                    <strong>Machine Learning</strong>
+                    <span>Predictive Models</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon ml">
+                    <i class="fas fa-brain"></i>
+                </div>
+
+                <div>
+                    <strong>Artificial Intelligence</strong>
+                    <span>Intelligent Systems</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon weka">
+                    <i class="fas fa-chart-simple"></i>
+                </div>
+
+                <div>
+                    <strong>Weka</strong>
+                    <span>Machine Learning Tool</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon data">
+                    <i class="fas fa-magnifying-glass-chart"></i>
+                </div>
+
+                <div>
+                    <strong>Data Preprocessing</strong>
+                    <span>ML Workflow</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         13. API & TESTING
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                13
+            </span>
+
+            <div>
+                <h3>API &amp; Testing</h3>
+
+                <p>
+                    Tools used for API development, testing,
+                    debugging and application validation.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon postman">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+
+                <div>
+                    <strong>Postman</strong>
+                    <span>API Testing</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon testing">
+                    <i class="fas fa-vial"></i>
+                </div>
+
+                <div>
+                    <strong>API Testing</strong>
+                    <span>REST API Validation</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon debugging">
+                    <i class="fas fa-bug"></i>
+                </div>
+
+                <div>
+                    <strong>Debugging</strong>
+                    <span>Application Debugging</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         14. OTHER TOOLS
+    ========================================== -->
+
+    <div class="tech-category">
+
+        <div class="tech-category-header">
+
+            <span class="tech-number">
+                14
+            </span>
+
+            <div>
+                <h3>Other Tools &amp; Concepts</h3>
+
+                <p>
+                    Additional technologies, concepts and tools
+                    that are part of my technical journey.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+            <div class="tech-card">
+
+                <div class="tech-icon cmd">
+                    <i class="fas fa-terminal"></i>
+                </div>
+
+                <div>
+                    <strong>Command Line</strong>
+                    <span>System Utilities</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon architecture">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+
+                <div>
+                    <strong>System Architecture</strong>
+                    <span>Software Design</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon api">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+
+                <div>
+                    <strong>Client / Server</strong>
+                    <span>Architecture</span>
+                </div>
+
+            </div>
+
+
+            <div class="tech-card">
+
+                <div class="tech-icon terminal">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <div>
+                    <strong>CMD</strong>
+                    <span>Windows CLI</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================
+     CONNECT SECTION
+========================================= -->
+
+<section class="connect-section" id="connect">
+
+    <!-- =====================================
+         HEADER
+    ====================================== -->
+
+    <div class="connect-heading">
+
+        <span class="section-label">
+            GET IN TOUCH
+        </span>
+
+        <h2>
+            Let's <span>Connect</span>
+        </h2>
+
+        <p>
+            Whether you want to collaborate on a project,
+            discuss technology, explore an opportunity,
+            or simply connect with me, you can find me
+            across the platforms below.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================
+         PRIMARY CONTACT
+    ====================================== -->
+
+    <div class="connect-primary">
+
+        <div class="contact-main-card">
+
+            <div class="contact-main-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    PRIMARY EMAIL
+                </span>
+
+                <a href="mailto:dphani0504@gmail.com">
+                    dphani0504@gmail.com
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-main-card">
+
+            <div class="contact-main-icon">
+                <i class="fas fa-phone"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    PHONE
+                </span>
+
+                <a href="tel:+916303195089">
+                    +91 6303195089
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-main-card">
+
+            <div class="contact-main-icon">
+                <i class="fas fa-location-dot"></i>
+            </div>
+
+            <div>
+
+                <span>
+                    LOCATION
+                </span>
+
+                <p>
+                    1-66, Nidumolu, Movva Mandal, Krishna Dist, Andhra Pradesh, 521156
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         SOCIAL & PUBLIC PROFILES
+    ====================================== -->
+
+    <div class="connect-group">
+
+        <div class="connect-group-title">
+
+            <span>01</span>
+
+            <div>
+                <h3>Social &amp; Public Profiles</h3>
+
+                <p>
+                    Find me across social and professional
+                    platforms.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <!-- Instagram -->
+
+            <a
+                href="https://www.instagram.com/mr_explorer_m/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card instagram"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+
+                <div>
+                    <strong>Instagram</strong>
+                    <span>@mr_explorer_m</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- WhatsApp -->
+
+            <a
+                href="https://wa.me/916303195089"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card whatsapp"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+
+                <div>
+                    <strong>WhatsApp</strong>
+                    <span>+91 6303195089</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            
+
+
+            <!-- Telegram -->
+
+            <a
+                href="https://t.me/Mr_explorer_0504"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card telegram"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+
+                <div>
+                    <strong>Telegram</strong>
+                    <span>@Mr_explorer_0504</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- GitHub -->
+
+            <a
+                href="https://github.com/phani05040"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card github"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+
+                <div>
+                    <strong>GitHub</strong>
+                    <span>@phani05040</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- LinkedIn -->
+
+            <a
+                href="https://www.linkedin.com/in/devi-phanindra-pamarthi-26012b286"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card linkedin"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+
+                <div>
+                    <strong>LinkedIn</strong>
+                    <span>Devi Phanindra Pamarthi</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         CODING PROFILES
+    ====================================== -->
+
+    <div class="connect-group">
+
+        <div class="connect-group-title">
+
+            <span>02</span>
+
+            <div>
+                <h3>Coding &amp; Developer Profiles</h3>
+
+                <p>
+                    My competitive programming, coding and
+                    developer activity.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <!-- LeetCode -->
+
+            <a
+                href="https://leetcode.com/u/Scientist0504/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card leetcode"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+
+                <div>
+                    <strong>LeetCode</strong>
+                    <span>Scientist0504</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- CodeChef -->
+
+            <a
+                href="https://www.codechef.com/users/scientist0504"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card codechef"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+
+                <div>
+                    <strong>CodeChef</strong>
+                    <span>scientist0504</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            
+
+
+            <!-- HackerRank -->
+
+            <a
+                href="https://www.hackerrank.com/profile/dphani0504"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card hackerrank"
+            >
+
+                <div class="profile-icon">
+                    <i class="fab fa-hackerrank"></i>
+                </div>
+
+                <div>
+                    <strong>HackerRank</strong>
+                    <span>dphani0504</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- Other -->
+
+            <a
+                href="[OTHER_CODING_PROFILE]"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card other-profile"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+
+                <div>
+                    <strong>Other Profile</strong>
+                    <span>[Platform / Username]</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         CAREER / JOB PROFILES
+    ====================================== -->
+
+    <div class="connect-group">
+
+        <div class="connect-group-title">
+
+            <span>03</span>
+
+            <div>
+                <h3>Career Profiles</h3>
+
+                <p>
+                    Professional profiles and platforms
+                    where recruiters can find me.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <!-- Foundit -->
+
+            <a
+                href="https://www.foundit.in/seeker/profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card career"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+
+                <div>
+                    <strong>Foundit</strong>
+                    <span>Professional Profile</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- Naukri -->
+
+            <a
+                href="https://www.naukri.com/mnjuser/profile?id=&altresid"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card career"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+
+                <div>
+                    <strong>Naukri</strong>
+                    <span>Professional Profile</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- Unstop -->
+
+            <a
+                href="https://unstop.com/u/devipam28264"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card career"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+
+                <div>
+                    <strong>Unstop</strong>
+                    <span>Competitions &amp; Career</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- Superset -->
+
+            <a
+                href=" "
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card career"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <div>
+                    <strong>Superset</strong>
+                    <span>Placement Profile: Superset ID: 8429690</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+
+
+            <!-- Scaler -->
+
+            <a
+                href="https://www.scaler.com/topics/hubs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-card career"
+            >
+
+                <div class="profile-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+
+                <div>
+                    <strong>Scaler</strong>
+                    <span>Developer Profile</span>
+                </div>
+
+                <i class="fas fa-arrow-up-right-from-square profile-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         RESUME
+    ====================================== -->
+
+    <div class="resume-card">
+
+        <div class="resume-content">
+
+            <div class="resume-icon">
+
+                <i class="fas fa-file-lines"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    PROFESSIONAL RESUME
+                </span>
+
+                <h3>
+                    Want to know more about me?
+                </h3>
+
+                <p>
+                    View my complete resume or download
+                    a copy for future reference.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="resume-buttons">
+
+            <a
+                href="assets/resume.pdf"
+                target="_blank"
+                class="resume-btn view"
+            >
+
+                <i class="fas fa-eye"></i>
+
+                View Resume
+
+            </a>
+
+
+            <a
+                href="assets/resume.pdf"
+                download="Phanindra_Pamarthi_Resume.pdf"
+                class="resume-btn download"
+            >
+
+                <i class="fas fa-download"></i>
+
+                Download
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         ACADEMIC / PERSONAL INFORMATION
+    ====================================== -->
+
+    <div class="connect-group">
+
+        <div class="connect-group-title">
+
+            <span>04</span>
+
+            <div>
+
+                <h3>Academic Information</h3>
+
+                <p>
+                    Basic academic information for
+                    professional and placement purposes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <div class="info-card">
+
+                <span>COLLEGE</span>
+
+                <strong>
+                    Seshadri Rao Gudlavalleru
+                    Engineering College
+                </strong>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span>BRANCH</span>
+
+                <strong>
+                    Computer Science Engineering
+                </strong>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span>COLLEGE ROLL / ID</span>
+
+                <strong>
+                    24485A0517
+                </strong>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span>COLLEGE EMAIL</span>
+
+                <strong>
+                    24485A0517@gecgudlavallerumic.in
+                </strong>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span>STUDY PERIOD</span>
+
+                <strong>
+                    2024 — 2027
+                </strong>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <span>CURRENT STATUS</span>
+
+                <strong>
+                    Final Year Student
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         PERSONAL INFORMATION
+    ====================================== -->
+
+    <div class="connect-group personal-information">
+
+        <div class="connect-group-title">
+
+            <span>05</span>
+
+            <div>
+
+                <h3>Personal Information</h3>
+
+                <p>
+                    Additional information for professional
+                    communication.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="personal-card">
+
+            <div class="personal-row">
+
+                <span>
+                    FULL NAME
+                </span>
+
+                <strong>
+                    Mr. Pamarthi Devi Phanindra
+                </strong>
+
+            </div>
+
+
+            <div class="personal-row">
+
+                <span>
+                    EMAIL
+                </span>
+
+                <strong>
+                    dphani0504@gmail.com
+                </strong>
+
+            </div>
+
+
+            <div class="personal-row">
+
+                <span>
+                    PHONE
+                </span>
+
+                <strong>
+                    +91 6303195089
+                </strong>
+
+            </div>
+
+
+            <div class="personal-row">
+
+                <span>
+                    PERMANENT ADDRESS
+                </span>
+
+                <strong>
+                    1-66<br>
+                    Nidumolu, Movva Mandal<br>
+                    Krishna District, Andhra Pradesh<br>
+                    India - 521156
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         FINAL CTA
+    ====================================== -->
+
+    <div class="connect-final">
+
+        <div class="final-line"></div>
+
+        <h3>
+            Have an idea?
+        </h3>
+
+        <p>
+            Let's turn it into something meaningful.
+        </p>
+
+        <a
+            href="mailto:dphani0504@gmail.com"
+            class="connect-btn"
+        >
+
+            <i class="fas fa-paper-plane"></i>
+
+            Start a Conversation
+
+        </a>
+
+    </div>
+
+
+
+    <!-- =====================================
+         FOOTER TAGLINE
+    ====================================== -->
+
+    <div class="portfolio-footer">
+
+        <div class="footer-line"></div>
+
+        <p>
+            Code with Passion
+            <span>•</span>
+            Learn with Curiosity
+            <span>•</span>
+            Build with Purpose
+        </p>
+
+        <small>
+            © 2026 Phanindra Pamarthi. All rights reserved.
+        </small>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+</main>
+
+
+    <!-- =========================================
+         ACTIVE NAVIGATION
+    ========================================== -->
+
+    <script>
+
+        const navLinks = document.querySelectorAll(".side-nav a");
+
+        navLinks.forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
